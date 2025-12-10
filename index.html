@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBB xP Analytics | @pickleo7</title>
+    <meta name="description" content="College Basketball Expected Points Analytics with interactive shot charts">
+    <meta name="author" content="@pickleo7">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .subtitle a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 2px solid rgba(255,255,255,0.5);
+        }
+
+        .subtitle a:hover {
+            border-bottom-color: white;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #666;
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        .games-section h2 {
+            color: #333;
+            margin-bottom: 25px;
+            font-size: 1.8em;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .game-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            border-left: 5px solid #667eea;
+        }
+
+        .game-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .game-title {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .score {
+            color: #667eea;
+            font-weight: 700;
+        }
+
+        .game-meta {
+            color: #666;
+            font-size: 0.95em;
+            margin-bottom: 15px;
+        }
+
+        .game-meta span {
+            margin-right: 15px;
+        }
+
+        .game-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .game-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .no-games {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+            font-size: 1.2em;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #f8f9fa;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .game-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .game-title {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏀 CBB xP Analytics</h1>
+            <p class="subtitle">Interactive Shot Charts & Expected Points Analysis by <a href="https://twitter.com/pickleo7" target="_blank">@pickleo7</a></p>
+        </header>
+
+        <div class="content">
+            <div class="intro">
+                <p>Welcome to Picklelytics CBB xP Analytics! Explore interactive shot charts with expected points (xP) analysis for college basketball games. Hover over shots to see player names, shot types, distances, and xP values.</p>
+            </div>
+
+            <div class="games-section">
+                <h2>Recent Games</h2>
+
+                <!-- Alabama vs UTSA -->
+                <div class="game-card">
+                    <div class="game-header">
+                        <div class="game-title">
+                            <span class="score">Alabama 97</span>, UTSA 55
+                        </div>
+                    </div>
+                    <div class="game-meta">
+                        <span>📅 December 7th, 2025</span>
+                        <span>🏟️ Coleman Coliseum</span>
+                    </div>
+                    <a href="games/20251207_UTSA_vs_Alabama_210210/shot_chart.html" class="game-link">
+                        📊 View Interactive Shot Chart
+                    </a>
+                </div>
+
+                <!-- Add more game cards here as you create them -->
+
+                <!-- Template for future games (comment out):
+                <div class="game-card">
+                    <div class="game-header">
+                        <div class="game-title">
+                            <span class="score">Team A XX</span>, Team B YY
+                        </div>
+                    </div>
+                    <div class="game-meta">
+                        <span>📅 Date</span>
+                        <span>🏟️ Venue</span>
+                    </div>
+                    <a href="games/YYYYMMDD_TeamA_vs_TeamB_GameID/shot_chart.html" class="game-link">
+                        📊 View Interactive Shot Chart
+                    </a>
+                </div>
+                -->
+
+            </div>
+        </div>
+
+        <footer>
+            <p>Built with ❤️ and data by <a href="https://twitter.com/pickleo7" target="_blank">@pickleo7</a> | Picklelytics</p>
+            <p style="margin-top: 10px; font-size: 0.85em;">Powered by CollegeBasketballData API | Model trained on NCAA shot location data</p>
+        </footer>
+    </div>
+</body>
+</html>
