@@ -6,6 +6,13 @@
     <title>{GAME_TITLE} | Picklelytics CBB xP</title>
     <meta name="description" content="Expected Points analysis for {GAME_TITLE}">
     <style>
+        :root {
+            --away-primary: {AWAY_COLOR};
+            --home-primary: {HOME_COLOR};
+            --away-secondary: {AWAY_SECONDARY};
+            --home-secondary: {HOME_SECONDARY};
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -28,7 +35,7 @@
         }
 
         header {
-            background: linear-gradient(135deg, #2d5016 0%, #4a7c27 100%);
+            background: linear-gradient(135deg, var(--away-primary) 0%, var(--home-primary) 100%);
             color: white;
             padding: 30px 40px;
             text-align: center;
@@ -56,7 +63,7 @@
         }
 
         .scoreboard {
-            background: #2d5016;
+            background: linear-gradient(to right, var(--away-primary) 0%, var(--away-primary) 45%, #ffffff 45%, #ffffff 55%, var(--home-primary) 55%, var(--home-primary) 100%);
             color: white;
             padding: 30px;
             border-radius: 8px;
@@ -71,6 +78,14 @@
             flex: 1;
         }
 
+        .team-box.away {
+            color: white;
+        }
+
+        .team-box.home {
+            color: white;
+        }
+
         .team-name {
             font-size: 1.8em;
             font-weight: 900;
@@ -80,19 +95,28 @@
         .team-score {
             font-size: 3em;
             font-weight: 900;
-            color: #a3d977;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
         .xp-value {
             font-size: 1.2em;
-            opacity: 0.8;
+            opacity: 0.9;
             margin-top: 10px;
         }
 
         .vs {
             font-size: 2em;
             font-weight: 700;
-            color: #a3d977;
+            color: #333;
+            background: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
 
         .section {
@@ -100,11 +124,11 @@
         }
 
         .section h2 {
-            color: #2d5016;
+            color: var(--away-primary);
             font-size: 2em;
             font-weight: 900;
             text-transform: uppercase;
-            border-left: 6px solid #4a7c27;
+            border-left: 6px solid var(--home-primary);
             padding-left: 15px;
             margin-bottom: 20px;
         }
@@ -136,7 +160,7 @@
         }
 
         .graphic-card h3 {
-            color: #2d5016;
+            color: var(--home-primary);
             margin-bottom: 15px;
             font-size: 1.3em;
         }
@@ -164,7 +188,7 @@
 
         .download-btn {
             display: inline-block;
-            background: linear-gradient(135deg, #4a7c27 0%, #2d5016 100%);
+            background: linear-gradient(135deg, var(--away-primary) 0%, var(--home-primary) 100%);
             color: white;
             padding: 12px 24px;
             border-radius: 6px;
@@ -176,13 +200,13 @@
 
         .download-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(74, 124, 39, 0.4);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
 
         .back-link {
             display: inline-block;
             margin-bottom: 20px;
-            color: #4a7c27;
+            color: var(--away-primary);
             text-decoration: none;
             font-weight: 700;
         }
@@ -223,13 +247,13 @@
 
             <!-- Scoreboard -->
             <div class="scoreboard">
-                <div class="team-box">
+                <div class="team-box away">
                     <div class="team-name">{AWAY_TEAM}</div>
                     <div class="team-score">{AWAY_SCORE}</div>
                     <div class="xp-value">xP: {AWAY_XP}</div>
                 </div>
-                <div class="vs">-</div>
-                <div class="team-box">
+                <div class="vs">VS</div>
+                <div class="team-box home">
                     <div class="team-name">{HOME_TEAM}</div>
                     <div class="team-score">{HOME_SCORE}</div>
                     <div class="xp-value">xP: {HOME_XP}</div>
