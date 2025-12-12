@@ -138,12 +138,17 @@
             padding-left: 0;
         }
 
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 12px;
+        }
+
         .game-card {
             background: white;
             border: 1px solid #e8e8e8;
             border-radius: 12px;
-            padding: 20px 24px;
-            margin-bottom: 12px;
+            padding: 16px;
             transition: all 0.2s ease;
             cursor: pointer;
         }
@@ -157,83 +162,84 @@
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         }
 
-        .game-header {
+        .matchup {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
             margin-bottom: 12px;
         }
 
-        .game-title {
-            font-size: 1.1em;
-            font-weight: 600;
-            color: #1a1a1a;
-            margin-bottom: 8px;
+        .team-row {
             display: flex;
+            align-items: center;
             justify-content: space-between;
-            align-items: center;
+            gap: 12px;
         }
 
-        .winner {
+        .team-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+        }
+
+        .team-logo {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+        }
+
+        .team-name {
+            font-size: 0.95em;
+            font-weight: 600;
             color: #1a1a1a;
-            font-weight: 600;
+            flex: 1;
         }
 
-        .score {
-            font-weight: 600;
+        .team-score {
+            font-size: 1.3em;
+            font-weight: 700;
             color: #666;
+            min-width: 36px;
+            text-align: right;
         }
 
-        .game-meta {
+        .team-score.winner {
+            color: #1a1a1a;
+        }
+
+        .game-date {
             color: #999;
-            font-size: 0.85em;
-            margin-bottom: 14px;
-            font-weight: 400;
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
+            font-size: 0.8em;
+            margin-bottom: 8px;
         }
 
-        .game-meta span {
-            display: inline-flex;
+        .xp-stats {
+            display: flex;
+            gap: 6px;
             align-items: center;
-            gap: 4px;
+            padding-top: 8px;
+            border-top: 1px solid #f0f0f0;
         }
 
-        .xp-comparison {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-            margin-top: 8px;
+        .xp-label {
+            font-size: 0.75em;
+            color: #999;
+            margin-right: 4px;
         }
 
         .xp-pill {
             background: #f0f0f0;
             color: #666;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.85em;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8em;
             font-weight: 600;
         }
 
         .xp-pill.higher {
             background: #2d5016;
             color: white;
-        }
-
-        .game-link {
-            display: inline-block;
-            background: transparent;
-            color: #2d5016;
-            padding: 0;
-            border-radius: 0;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9em;
-            transition: opacity 0.2s;
-        }
-
-        .game-link:hover {
-            opacity: 0.7;
-            transform: none;
-            box-shadow: none;
         }
 
         .no-results {
@@ -357,6 +363,33 @@
                 <div class="no-results" id="noResults">
                     No games found matching your search.
                 </div>
+
+                <!-- UTSA vs Alabama -->
+                <div class="game-card" data-teams="utsa alabama" data-date="2025-12-07" onclick="window.location='games/20251207_UTSA_vs_Alabama_210210/index.html'">
+                    <div class="game-date">December 07, 2025</div>
+                    <div class="matchup">
+                        <div class="team-row">
+                            <div class="team-info">
+                                <img src="https://a.espncdn.com/i/teamlogos/ncaa/500/2636.png" alt="UTSA" class="team-logo">
+                                <span class="team-name">UTSA</span>
+                            </div>
+                            <span class="team-score ">55</span>
+                        </div>
+                        <div class="team-row">
+                            <div class="team-info">
+                                <img src="https://a.espncdn.com/i/teamlogos/ncaa/500/333.png" alt="Alabama" class="team-logo">
+                                <span class="team-name">Alabama</span>
+                            </div>
+                            <span class="team-score winner">97</span>
+                        </div>
+                    </div>
+                    <div class="xp-stats">
+                        <span class="xp-label">xP:</span>
+                        <span class="xp-pill ">72.5</span>
+                        <span class="xp-pill higher">102.8</span>
+                    </div>
+                </div>
+<div class="games-grid">
 
                 <!-- UTSA vs Alabama -->
                 <div class="game-card" data-teams="utsa alabama" data-date="2025-12-07" onclick="window.location='games/20251207_UTSA_vs_Alabama_210210/index.html'">
