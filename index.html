@@ -140,17 +140,21 @@
 
         .games-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 12px;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
         }
 
         .game-card {
             background: white;
             border: 1px solid #e8e8e8;
             border-radius: 12px;
-            padding: 16px;
+            padding: 20px 16px;
             transition: all 0.2s ease;
             cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
         }
 
         .game-card.hidden {
@@ -158,88 +162,53 @@
         }
 
         .game-card:hover {
-            border-color: #d0d0d0;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            border-color: #2d5016;
+            box-shadow: 0 4px 12px rgba(45, 80, 22, 0.15);
+            transform: translateY(-2px);
         }
 
         .matchup {
             display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            width: 100%;
+        }
+
+        .team-container {
+            display: flex;
             flex-direction: column;
+            align-items: center;
             gap: 8px;
-            margin-bottom: 12px;
-        }
-
-        .team-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-        }
-
-        .team-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
             flex: 1;
         }
 
         .team-logo {
-            width: 32px;
-            height: 32px;
+            width: 48px;
+            height: 48px;
             object-fit: contain;
         }
 
-        .team-name {
-            font-size: 0.95em;
-            font-weight: 600;
-            color: #1a1a1a;
-            flex: 1;
-        }
-
         .team-score {
-            font-size: 1.3em;
+            font-size: 1.8em;
             font-weight: 700;
-            color: #666;
-            min-width: 36px;
-            text-align: right;
+            color: #999;
         }
 
         .team-score.winner {
             color: #1a1a1a;
         }
 
-        .game-date {
-            color: #999;
-            font-size: 0.8em;
-            margin-bottom: 8px;
-        }
-
-        .xp-stats {
-            display: flex;
-            gap: 6px;
-            align-items: center;
-            padding-top: 8px;
-            border-top: 1px solid #f0f0f0;
-        }
-
-        .xp-label {
-            font-size: 0.75em;
-            color: #999;
-            margin-right: 4px;
-        }
-
-        .xp-pill {
-            background: #f0f0f0;
-            color: #666;
-            padding: 3px 10px;
-            border-radius: 12px;
-            font-size: 0.8em;
+        .vs-separator {
+            font-size: 0.85em;
+            color: #ccc;
             font-weight: 600;
         }
 
-        .xp-pill.higher {
-            background: #2d5016;
-            color: white;
+        .game-date {
+            color: #999;
+            font-size: 0.75em;
+            text-align: center;
         }
 
         .no-results {
@@ -391,7 +360,32 @@
                 </div>
 <div class="games-grid">
 
-                <!-- Alabama vs North Dakota -->
+                <!-- Auburn vs Bethune-Cookman -->
+                <div class="game-card" data-teams="bethune-cookman auburn" data-date="2025-11-04" data-game-id="20251104_vs_Bethune-Cookman_212751" onclick="window.location='games/20251104_vs_Bethune-Cookman_212751/index.html'">
+                    <div class="game-date">November 04, 2025</div>
+                    <div class="matchup">
+                        <div class="team-row">
+                            <div class="team-info">
+                                <img src="https://a.espncdn.com/i/teamlogos/ncaa/500/2.png" alt="Auburn" class="team-logo">
+                                <span class="team-name">Auburn</span>
+                            </div>
+                            <span class="team-score winner">95</span>
+                        </div>
+                        <div class="team-row">
+                            <div class="team-info">
+                                <img src="https://a.espncdn.com/i/teamlogos/ncaa/500/2065.png" alt="Bethune-Cookman" class="team-logo">
+                                <span class="team-name">Bethune-Cookman</span>
+                            </div>
+                            <span class="team-score ">90</span>
+                        </div>
+                    </div>
+                    <div class="xp-stats">
+                        <span class="xp-label">xP:</span>
+                        <span class="xp-pill higher">124.7</span>
+                        <span class="xp-pill ">92.7</span>
+                    </div>
+                </div>
+<!-- Alabama vs North Dakota -->
                 <div class="game-card" data-teams="north dakota alabama" data-date="2025-11-04" data-game-id="20251104_North_Dakota_vs_Alabama_209778" onclick="window.location='games/20251104_North_Dakota_vs_Alabama_209778/index.html'">
                     <div class="game-date">November 04, 2025</div>
                     <div class="matchup">
