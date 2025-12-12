@@ -123,11 +123,64 @@
 
         .intro {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             color: #555;
             font-size: 1.15em;
             line-height: 1.7;
             padding: 0 20px;
+        }
+
+        .search-filters {
+            background: #f8f8f8;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border: 2px solid #e8e8e8;
+        }
+
+        .filter-row {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-row label {
+            font-weight: 700;
+            color: #2d5016;
+            font-size: 0.9em;
+        }
+
+        .filter-row input,
+        .filter-row select {
+            padding: 10px 15px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 1em;
+            flex: 1;
+            min-width: 200px;
+            transition: border-color 0.2s;
+        }
+
+        .filter-row input:focus,
+        .filter-row select:focus {
+            outline: none;
+            border-color: #4a7c27;
+        }
+
+        .clear-filters {
+            background: #4a7c27;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .clear-filters:hover {
+            background: #2d5016;
         }
 
         .games-section h2 {
@@ -149,6 +202,10 @@
             margin-bottom: 25px;
             transition: all 0.3s ease;
             position: relative;
+        }
+
+        .game-card.hidden {
+            display: none;
         }
 
         .game-card::before {
@@ -219,6 +276,18 @@
             background: linear-gradient(135deg, #5a8c37 0%, #3d6026 100%);
         }
 
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+            font-size: 1.1em;
+            display: none;
+        }
+
+        .no-results.show {
+            display: block;
+        }
+
         footer {
             text-align: center;
             padding: 30px;
@@ -247,6 +316,15 @@
             .stats-bar {
                 flex-direction: column;
                 gap: 15px;
+            }
+
+            .filter-row {
+                flex-direction: column;
+            }
+
+            .filter-row input,
+            .filter-row select {
+                width: 100%;
             }
 
             .game-title {
@@ -290,11 +368,25 @@
                 <p>Cutting-edge Expected Points (xP) analytics for college basketball. Every shot tracked, every probability calculated. Interactive charts reveal the story behind the score.</p>
             </div>
 
+            <!-- Search/Filter Section -->
+            <div class="search-filters">
+                <div class="filter-row">
+                    <label for="teamSearch">🔍 Search:</label>
+                    <input type="text" id="teamSearch" placeholder="Search by team name (e.g., Alabama, Duke)...">
+                    <input type="date" id="dateFilter" placeholder="Filter by date">
+                    <button class="clear-filters" onclick="clearFilters()">Clear</button>
+                </div>
+            </div>
+
             <div class="games-section">
                 <h2>Game Reports</h2>
 
+                <div class="no-results" id="noResults">
+                    No games found matching your search.
+                </div>
+
                 <!-- Alabama vs UTSA -->
-                <div class="game-card">
+                <div class="game-card" data-teams="alabama utsa" data-date="2025-12-07">
                     <div class="game-header">
                         <div class="game-title">
                             <span class="winner score">Alabama 97</span> - <span class="score">UTSA 55</span>
@@ -311,14 +403,14 @@
                 </div>
 
                 <!-- Template for future games (keep commented):
-                <div class="game-card">
+                <div class="game-card" data-teams="teama teamb" data-date="YYYY-MM-DD">
                     <div class="game-header">
                         <div class="game-title">
                             <span class="winner score">Team A XX</span> - <span class="score">Team B YY</span>
                         </div>
                     </div>
                     <div class="game-meta">
-                        <span>📅 Date</span>
+                        <span>📅 Month DD, YYYY</span>
                         <span>🏟️ Venue</span>
                         <span>📊 xP: Team A XX.X - Team B YY.Y</span>
                     </div>
@@ -336,5 +428,51 @@
             <p style="margin-top: 10px; font-size: 0.9em; opacity: 0.8;">Powered by shot tracking data & machine learning</p>
         </footer>
     </div>
+
+    <script>
+        // Search and filter functionality
+        const teamSearch = document.getElementById('teamSearch');
+        const dateFilter = document.getElementById('dateFilter');
+        const gameCards = document.querySelectorAll('.game-card');
+        const noResults = document.getElementById('noResults');
+
+        function filterGames() {
+            const searchTerm = teamSearch.value.toLowerCase();
+            const selectedDate = dateFilter.value;
+            let visibleCount = 0;
+
+            gameCards.forEach(card => {
+                const teams = card.getAttribute('data-teams');
+                const gameDate = card.getAttribute('data-date');
+
+                const matchesSearch = !searchTerm || teams.includes(searchTerm);
+                const matchesDate = !selectedDate || gameDate === selectedDate;
+
+                if (matchesSearch && matchesDate) {
+                    card.classList.remove('hidden');
+                    visibleCount++;
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+
+            // Show/hide no results message
+            if (visibleCount === 0) {
+                noResults.classList.add('show');
+            } else {
+                noResults.classList.remove('show');
+            }
+        }
+
+        function clearFilters() {
+            teamSearch.value = '';
+            dateFilter.value = '';
+            filterGames();
+        }
+
+        // Add event listeners
+        teamSearch.addEventListener('input', filterGames);
+        dateFilter.addEventListener('change', filterGames);
+    </script>
 </body>
 </html>
