@@ -211,6 +211,74 @@
             text-align: center;
         }
 
+        .no-data-tag {
+            background: #fff3cd;
+            color: #856404;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.7em;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .games-layout {
+            display: flex;
+            gap: 24px;
+            align-items: flex-start;
+        }
+
+        .conference-sidebar {
+            flex-shrink: 0;
+            width: 200px;
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid #e8e8e8;
+            position: sticky;
+            top: 20px;
+        }
+
+        .conference-sidebar h3 {
+            margin: 0 0 16px 0;
+            font-size: 1.1em;
+            color: #2d5016;
+        }
+
+        .conference-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .conference-btn {
+            background: white;
+            border: 1px solid #e8e8e8;
+            padding: 10px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9em;
+            text-align: left;
+            transition: all 0.2s ease;
+            color: #333;
+        }
+
+        .conference-btn:hover {
+            background: #f5f5f5;
+            border-color: #2d5016;
+        }
+
+        .conference-btn.active {
+            background: #2d5016;
+            color: white;
+            border-color: #2d5016;
+            font-weight: 600;
+        }
+
+        .games-section {
+            flex: 1;
+            min-width: 0;
+        }
+
         .no-results {
             text-align: center;
             padding: 60px 20px;
@@ -286,13 +354,32 @@
             .game-card {
                 padding: 16px 18px;
             }
+
+            .games-layout {
+                flex-direction: column;
+            }
+
+            .conference-sidebar {
+                width: 100%;
+                position: static;
+            }
+
+            .conference-list {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+
+            .conference-btn {
+                flex: 1 1 auto;
+                min-width: 120px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>🏀 <span class="brand">Picklelytics</span> CBB xP</h1>
+            <h1><span class="brand">Picklelytics</span> CBB xP</h1>
             <p class="subtitle">Advanced Basketball Analytics by <a href="https://twitter.com/pickleo7" target="_blank">@pickleo7</a></p>
         </header>
 
@@ -319,19 +406,39 @@
             <!-- Search/Filter Section -->
             <div class="search-filters">
                 <div class="filter-row">
-                    <label for="teamSearch">🔍 Search:</label>
+                    <label for="teamSearch">Search:</label>
                     <input type="text" id="teamSearch" placeholder="Search by team name (e.g., Alabama, Duke)...">
                     <input type="date" id="dateFilter" placeholder="Filter by date">
                     <button class="clear-filters" onclick="clearFilters()">Clear</button>
                 </div>
             </div>
 
-            <div class="games-section">
-                <h2>Game Reports</h2>
+            <div class="games-layout">
+                <!-- Conference Sidebar -->
+                <aside class="conference-sidebar" id="conferenceSidebar">
+                    <h3>Conferences</h3>
+                    <div class="conference-list">
+                        <button class="conference-btn active" data-conference="all" onclick="filterByConference('all')">All Games</button>
+                        <button class="conference-btn" data-conference="SEC" onclick="filterByConference('SEC')">SEC</button>
+                        <button class="conference-btn" data-conference="Big Ten" onclick="filterByConference('Big Ten')">Big Ten</button>
+                        <button class="conference-btn" data-conference="ACC" onclick="filterByConference('ACC')">ACC</button>
+                        <button class="conference-btn" data-conference="Big 12" onclick="filterByConference('Big 12')">Big 12</button>
+                        <button class="conference-btn" data-conference="Big East" onclick="filterByConference('Big East')">Big East</button>
+                        <button class="conference-btn" data-conference="American Athletic" onclick="filterByConference('American Athletic')">American</button>
+                        <button class="conference-btn" data-conference="Mountain West" onclick="filterByConference('Mountain West')">Mountain West</button>
+                        <button class="conference-btn" data-conference="WCC" onclick="filterByConference('WCC')">WCC</button>
+                        <button class="conference-btn" data-conference="Atlantic 10" onclick="filterByConference('Atlantic 10')">Atlantic 10</button>
+                    </div>
+                </aside>
 
-                <div class="no-results" id="noResults">
-                    No games found matching your search.
-                </div>
+                <div class="games-section">
+                    <h2>Game Reports</h2>
+
+                    <div class="no-results" id="noResults">
+                        No games found matching your search.
+                    </div>
+
+                    <div class="games-grid">
 
                 <!-- UTSA vs Alabama -->
                 <div class="game-card" data-teams="utsa alabama" data-date="2025-12-07" onclick="window.location='games/20251207_UTSA_vs_Alabama_210210/index.html'">
@@ -5362,6 +5469,8 @@
                 </div>
                 -->
 
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -5372,11 +5481,73 @@
     </div>
 
     <script>
+        // Team conference mappings
+        const teamConferences = {
+            'alabama': 'SEC', 'arkansas': 'SEC', 'auburn': 'SEC', 'florida': 'SEC', 'georgia': 'SEC',
+            'kentucky': 'SEC', 'lsu': 'SEC', 'mississippi state': 'SEC', 'missouri': 'SEC', 'ole miss': 'SEC',
+            'south carolina': 'SEC', 'tennessee': 'SEC', 'texas a&m': 'SEC', 'vanderbilt': 'SEC',
+            'oklahoma': 'SEC', 'texas': 'SEC',
+
+            'illinois': 'Big Ten', 'indiana': 'Big Ten', 'iowa': 'Big Ten', 'maryland': 'Big Ten',
+            'michigan': 'Big Ten', 'michigan state': 'Big Ten', 'minnesota': 'Big Ten', 'nebraska': 'Big Ten',
+            'northwestern': 'Big Ten', 'ohio state': 'Big Ten', 'penn state': 'Big Ten', 'purdue': 'Big Ten',
+            'rutgers': 'Big Ten', 'wisconsin': 'Big Ten', 'ucla': 'Big Ten', 'usc': 'Big Ten',
+            'oregon': 'Big Ten', 'washington': 'Big Ten',
+
+            'boston college': 'ACC', 'clemson': 'ACC', 'duke': 'ACC', 'florida state': 'ACC',
+            'georgia tech': 'ACC', 'louisville': 'ACC', 'miami': 'ACC', 'north carolina': 'ACC',
+            'nc state': 'ACC', 'notre dame': 'ACC', 'pittsburgh': 'ACC', 'syracuse': 'ACC',
+            'virginia': 'ACC', 'virginia tech': 'ACC', 'wake forest': 'ACC', 'california': 'ACC',
+            'stanford': 'ACC', 'smu': 'ACC',
+
+            'baylor': 'Big 12', 'byu': 'Big 12', 'cincinnati': 'Big 12', 'colorado': 'Big 12',
+            'houston': 'Big 12', 'iowa state': 'Big 12', 'kansas': 'Big 12', 'kansas state': 'Big 12',
+            'oklahoma state': 'Big 12', 'tcu': 'Big 12', 'texas tech': 'Big 12', 'ucf': 'Big 12',
+            'utah': 'Big 12', 'west virginia': 'Big 12', 'arizona': 'Big 12', 'arizona state': 'Big 12',
+
+            'butler': 'Big East', 'creighton': 'Big East', 'depaul': 'Big East', 'georgetown': 'Big East',
+            'marquette': 'Big East', 'providence': 'Big East', 'seton hall': 'Big East', "st. john's": 'Big East',
+            'villanova': 'Big East', 'xavier': 'Big East', 'uconn': 'Big East',
+
+            'gonzaga': 'WCC', "saint mary's": 'WCC', 'san francisco': 'WCC',
+
+            'dayton': 'Atlantic 10', 'vcu': 'Atlantic 10', 'davidson': 'Atlantic 10', 'richmond': 'Atlantic 10',
+
+            'memphis': 'American Athletic', 'temple': 'American Athletic', 'utsa': 'American Athletic',
+            'east carolina': 'American Athletic', 'uab': 'American Athletic',
+
+            'san diego state': 'Mountain West', 'unlv': 'Mountain West', 'boise state': 'Mountain West',
+            'nevada': 'Mountain West', 'new mexico': 'Mountain West', 'colorado state': 'Mountain West',
+        };
+
         // Search and filter functionality
         const teamSearch = document.getElementById('teamSearch');
         const dateFilter = document.getElementById('dateFilter');
         const gameCards = document.querySelectorAll('.game-card');
         const noResults = document.getElementById('noResults');
+        let selectedConference = 'all';
+
+        function getGameConference(teams) {
+            const teamList = teams.toLowerCase().split(' ');
+            for (const team of teamList) {
+                if (teamConferences[team]) {
+                    return teamConferences[team];
+                }
+            }
+            return null;
+        }
+
+        function filterByConference(conference) {
+            selectedConference = conference;
+
+            // Update active button
+            document.querySelectorAll('.conference-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            filterGames();
+        }
 
         function filterGames() {
             const searchTerm = teamSearch.value.toLowerCase();
@@ -5389,8 +5560,10 @@
 
                 const matchesSearch = !searchTerm || teams.includes(searchTerm);
                 const matchesDate = !selectedDate || gameDate === selectedDate;
+                const gameConference = getGameConference(teams);
+                const matchesConference = selectedConference === 'all' || gameConference === selectedConference;
 
-                if (matchesSearch && matchesDate) {
+                if (matchesSearch && matchesDate && matchesConference) {
                     card.classList.remove('hidden');
                     visibleCount++;
                 } else {
