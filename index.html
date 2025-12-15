@@ -465,7 +465,23 @@
 
                     <div class="games-grid">
 
-                <!-- Elon vs Furman -->
+                <!-- Radford vs Southern Miss -->
+                <div class="game-card" data-teams="southern miss radford" data-date="2025-12-04" data-game-id="20251204_Southern_Miss_vs_Radford_213701" onclick="window.location='games/20251204_Southern_Miss_vs_Radford_213701/index.html'">
+                    <div class="game-date">December 04, 2025</div>
+                    
+                    <div class="matchup">
+                        <div class="team-container">
+                            <img src="https://a.espncdn.com/i/teamlogos/ncaa/500/2515.png" alt="Radford" class="team-logo">
+                            <span class="team-score ">75</span>
+                        </div>
+                        <span class="vs-separator">VS</span>
+                        <div class="team-container">
+                            <img src="https://a.espncdn.com/i/teamlogos/ncaa/500/2572.png" alt="Southern Miss" class="team-logo">
+                            <span class="team-score winner">82</span>
+                        </div>
+                    </div>
+                </div>
+<!-- Elon vs Furman -->
                 <div class="game-card" data-teams="furman elon" data-date="2025-12-04" data-game-id="20251204_Furman_vs_Elon_213702" onclick="window.location='games/20251204_Furman_vs_Elon_213702/index.html'">
                     <div class="game-date">December 04, 2025</div>
                     
@@ -8487,19 +8503,51 @@
         }
 
         function filterGames() {
-            const searchTerm = teamSearch.value.toLowerCase();
+            const searchTerm = teamSearch.value.toLowerCase().trim();
             const selectedDate = dateFilter.value;
             let visibleCount = 0;
+
+            // Update filter UI to show active state
+            if (searchTerm) {
+                teamSearch.style.borderColor = '#2d5016';
+                teamSearch.style.borderWidth = '2px';
+            } else {
+                teamSearch.style.borderColor = '#e0e0e0';
+                teamSearch.style.borderWidth = '1px';
+            }
+
+            if (selectedDate) {
+                dateFilter.style.borderColor = '#2d5016';
+                dateFilter.style.borderWidth = '2px';
+            } else {
+                dateFilter.style.borderColor = '#e0e0e0';
+                dateFilter.style.borderWidth = '1px';
+            }
 
             gameCards.forEach(card => {
                 const teams = card.getAttribute('data-teams');
                 const gameDate = card.getAttribute('data-date');
-
-                const matchesSearch = !searchTerm || teams.includes(searchTerm);
-                const matchesDate = !selectedDate || gameDate === selectedDate;
                 const gameConference = card.getAttribute('data-conference') || '';
+
+                // Improved search matching - matches any word in team names
+                let matchesSearch = true;
+                if (searchTerm) {
+                    const searchWords = searchTerm.split(/\s+/);
+                    const teamsList = teams.toLowerCase();
+
+                    // Check if ANY search word matches ANY part of the teams string
+                    matchesSearch = searchWords.some(word =>
+                        teamsList.includes(word)
+                    );
+                }
+
+                // Date filter is optional - only applied if date is selected
+                const matchesDate = !selectedDate || gameDate === selectedDate;
+
+                // Conference filter - independent from other filters
                 const matchesConference = selectedConference === 'all' || gameConference === selectedConference;
 
+                // Show card if it matches ALL active filters
                 if (matchesSearch && matchesDate && matchesConference) {
                     card.classList.remove('hidden');
                     visibleCount++;
@@ -8514,11 +8562,47 @@
             } else {
                 noResults.classList.remove('show');
             }
+
+            // Update results count
+            updateResultsCount(visibleCount);
+        }
+
+        function updateResultsCount(count) {
+            const existingCount = document.getElementById('resultsCount');
+            if (existingCount) {
+                existingCount.remove();
+            }
+
+            if (teamSearch.value || dateFilter.value || selectedConference !== 'all') {
+                const countEl = document.createElement('div');
+                countEl.id = 'resultsCount';
+                countEl.style.cssText = 'text-align: center; color: #666; font-size: 0.9em; margin-top: 10px; margin-bottom: -10px;';
+                countEl.textContent = `Showing ${count} game${count !== 1 ? 's' : ''}`;
+
+                const searchFilters = document.querySelector('.search-filters');
+                searchFilters.appendChild(countEl);
+            }
         }
 
         function clearFilters() {
             teamSearch.value = '';
             dateFilter.value = '';
+            selectedConference = 'all';
+
+            // Reset conference buttons
+            document.querySelectorAll('.conference-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-conference') === 'all') {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Reset input styles
+            teamSearch.style.borderColor = '#e0e0e0';
+            teamSearch.style.borderWidth = '1px';
+            dateFilter.style.borderColor = '#e0e0e0';
+            dateFilter.style.borderWidth = '1px';
+
             filterGames();
         }
 
