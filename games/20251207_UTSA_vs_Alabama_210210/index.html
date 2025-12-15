@@ -7,10 +7,10 @@
     <meta name="description" content="Expected Points analysis for UTSA vs Alabama">
     <style>
         :root {
-            --away-primary: #0C2340;
-            --home-primary: #9E1B32;
-            --away-secondary: #0C2340;
-            --home-secondary: #9E1B32;
+            --away-primary: #002A5C;
+            --home-primary: #9e1632;
+            --away-secondary: #002A5C;
+            --home-secondary: #9e1632;
         }
 
         * {
@@ -146,9 +146,9 @@
         }
 
         .graphics-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
             margin: 20px 0;
         }
 
@@ -157,6 +157,7 @@
             border-radius: 8px;
             padding: 20px;
             text-align: center;
+            width: 100%;
         }
 
         .graphic-card h3 {
@@ -219,10 +220,6 @@
             .scoreboard {
                 flex-direction: column;
                 gap: 20px;
-            }
-
-            .graphics-grid {
-                grid-template-columns: 1fr;
             }
 
             h1 {
