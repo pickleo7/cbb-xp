@@ -7,10 +7,10 @@
     <meta name="description" content="Expected Points analysis for North Dakota vs Alabama">
     <style>
         :root {
-            --away-primary: #007F3B;
-            --home-primary: #9E1B32;
-            --away-secondary: #007F3B;
-            --home-secondary: #9E1B32;
+            --away-primary: #00A26B;
+            --home-primary: #9e1632;
+            --away-secondary: #00A26B;
+            --home-secondary: #9e1632;
         }
 
         * {
@@ -76,6 +76,9 @@
         .team-box {
             text-align: center;
             flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .team-box.away {
@@ -84,6 +87,16 @@
 
         .team-box.home {
             color: white;
+        }
+
+        .team-logo {
+            width: 80px;
+            height: 80px;
+            max-width: 80px;
+            max-height: 80px;
+            object-fit: contain;
+            margin-bottom: 15px;
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
         }
 
         .team-name {
@@ -146,9 +159,9 @@
         }
 
         .graphics-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
             margin: 20px 0;
         }
 
@@ -157,6 +170,7 @@
             border-radius: 8px;
             padding: 20px;
             text-align: center;
+            width: 100%;
         }
 
         .graphic-card h3 {
@@ -215,14 +229,78 @@
             text-decoration: underline;
         }
 
+        .player-tables {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 20px 0;
+        }
+
+        .player-table-container h3 {
+            color: var(--home-primary);
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .player-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            font-size: 0.9em;
+        }
+
+        .player-table thead {
+            background: linear-gradient(135deg, var(--away-primary) 0%, var(--home-primary) 100%);
+            color: white;
+        }
+
+        .player-table th {
+            padding: 12px 8px;
+            text-align: left;
+            font-weight: 700;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .player-table td {
+            padding: 10px 8px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .player-table tbody tr:hover {
+            background: #f5f5f5;
+        }
+
+        .player-name {
+            font-weight: 600;
+        }
+
+        .perf {
+            font-weight: 700;
+        }
+
+        .perf.positive {
+            color: #28a745;
+        }
+
+        .perf.negative {
+            color: #dc3545;
+        }
+
+        .stat-group {
+            font-size: 0.85em;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .player-tables {
+                grid-template-columns: 1fr;
+            }
+        }
+
         @media (max-width: 768px) {
             .scoreboard {
                 flex-direction: column;
                 gap: 20px;
-            }
-
-            .graphics-grid {
-                grid-template-columns: 1fr;
             }
 
             h1 {
@@ -248,12 +326,14 @@
             <!-- Scoreboard -->
             <div class="scoreboard">
                 <div class="team-box away">
+                    <img src="https://a.espncdn.com/i/teamlogos/ncaa/500/155.png" alt="North Dakota" class="team-logo" onerror="this.style.display='none'">
                     <div class="team-name">North Dakota</div>
                     <div class="team-score">62</div>
                     <div class="xp-value">xP: 74.2</div>
                 </div>
                 <div class="vs">VS</div>
                 <div class="team-box home">
+                    <img src="https://a.espncdn.com/i/teamlogos/ncaa/500/333.png" alt="Alabama" class="team-logo" onerror="this.style.display='none'">
                     <div class="team-name">Alabama</div>
                     <div class="team-score">91</div>
                     <div class="xp-value">xP: 83.6</div>
@@ -288,6 +368,21 @@
                 <a href="shot_chart.html" class="download-btn" target="_blank">Open Full Screen</a>
             </div>
 
+            <!-- Player Performance Summary -->
+            <div class="section">
+                <h2>Player Performance vs Expected</h2>
+                <div class="player-tables">
+                    <div class="player-table-container">
+                        <h3>North Dakota</h3>
+                        <div id="away-player-table"></div>
+                    </div>
+                    <div class="player-table-container">
+                        <h3>Alabama</h3>
+                        <div id="home-player-table"></div>
+                    </div>
+                </div>
+            </div>
+
             <!-- xP Report -->
             <div class="section">
                 <h2>Expected Points Report</h2>
@@ -295,9 +390,82 @@
                     <a href="xp_report.txt" class="download-btn" download>Download Full Report</a>
                     <a href="xp_report_players.csv" class="download-btn" download>Download Player Stats (CSV)</a>
                     <a href="xp_report_summary.csv" class="download-btn" download>Download Team Summary (CSV)</a>
+                    <a href="shot_by_shot_report.txt" class="download-btn" download>Download Shot-by-Shot Report</a>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        // Load and display player performance data
+        fetch('xp_report_players.csv')
+            .then(response => response.text())
+            .then(csv => {
+                const lines = csv.trim().split('\n');
+                const headers = lines[0].split(',');
+
+                const awayPlayers = [];
+                const homePlayers = [];
+
+                for (let i = 1; i < lines.length; i++) {
+                    const values = lines[i].split(',');
+                    const player = {
+                        team: values[0],
+                        name: values[1],
+                        fgMakes: parseInt(values[2]),
+                        fgAttempts: parseInt(values[3]),
+                        fgPct: parseFloat(values[4]),
+                        fgXP: parseFloat(values[5]),
+                        fgActual: parseFloat(values[6]),
+                        fgPerf: parseFloat(values[7]),
+                        totalXP: parseFloat(values[14]),
+                        totalActual: parseFloat(values[15]),
+                        totalPerf: parseFloat(values[16])
+                    };
+
+                    if (player.team === 'North Dakota') {
+                        awayPlayers.push(player);
+                    } else if (player.team === 'Alabama') {
+                        homePlayers.push(player);
+                    }
+                }
+
+                // Sort by total performance (best to worst)
+                awayPlayers.sort((a, b) => b.totalPerf - a.totalPerf);
+                homePlayers.sort((a, b) => b.totalPerf - a.totalPerf);
+
+                // Render tables
+                document.getElementById('away-player-table').innerHTML = createPlayerTable(awayPlayers);
+                document.getElementById('home-player-table').innerHTML = createPlayerTable(homePlayers);
+            });
+
+        function createPlayerTable(players) {
+            let html = '<table class="player-table">';
+            html += '<thead><tr>';
+            html += '<th>Player</th>';
+            html += '<th>FG</th>';
+            html += '<th>FG%</th>';
+            html += '<th>xP</th>';
+            html += '<th>Actual</th>';
+            html += '<th>+/-</th>';
+            html += '</tr></thead>';
+            html += '<tbody>';
+
+            players.forEach(p => {
+                const perfClass = p.totalPerf > 0 ? 'positive' : (p.totalPerf < 0 ? 'negative' : '');
+                html += '<tr>';
+                html += `<td class="player-name">${p.name}</td>`;
+                html += `<td>${p.fgMakes}/${p.fgAttempts}</td>`;
+                html += `<td>${(p.fgPct * 100).toFixed(1)}%</td>`;
+                html += `<td>${p.totalXP.toFixed(1)}</td>`;
+                html += `<td>${p.totalActual.toFixed(1)}</td>`;
+                html += `<td class="perf ${perfClass}">${p.totalPerf >= 0 ? '+' : ''}${p.totalPerf.toFixed(1)}</td>`;
+                html += '</tr>';
+            });
+
+            html += '</tbody></table>';
+            return html;
+        }
+    </script>
 </body>
 </html>
