@@ -1,0 +1,286 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>xP Graphic - Purdue Fort Wayne vs Ohio State</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: white;
+            padding: 20px;
+        }
+
+        .xp-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #1a1a1a;
+        }
+
+        .teams-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .team-info {
+            text-align: center;
+            flex: 1;
+        }
+
+        .team-logo {
+            width: 80px;
+            height: 80px;
+            max-width: 80px;
+            max-height: 80px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+
+        .team-name {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .team-score {
+            font-size: 36px;
+            font-weight: 700;
+        }
+
+        .vs {
+            font-size: 18px;
+            color: #999;
+            font-style: italic;
+            flex: 0 0 auto;
+            padding: 0 20px;
+        }
+
+        .game-date {
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .stats-table {
+            margin: 30px 0;
+        }
+
+        .stat-row {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .stat-row:last-child {
+            border-bottom: none;
+        }
+
+        .stat-label {
+            flex: 1;
+            text-align: center;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .stat-value {
+            flex: 1;
+            text-align: center;
+        }
+
+        .xp-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 8px;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .actual-value {
+            margin-left: 10px;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .summary {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .summary-text {
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .legend {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e8e8e8;
+        }
+
+        .legend-title {
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .legend-text {
+            font-size: 12px;
+            color: #666;
+            font-style: italic;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #999;
+            font-size: 12px;
+        }
+
+        .venue {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="xp-container">
+        <div class="title">Ohio State vs. Purdue Fort Wayne: Expected Points</div>
+
+        <div class="teams-header">
+            <div class="team-info">
+                <img src="https://a.espncdn.com/i/teamlogos/ncaa/500/194.png" alt="Ohio State" class="team-logo" onerror="this.style.display='none'">
+                <div class="team-name" style="color: #ce1141">Ohio State</div>
+                <div class="team-score" style="color: #ce1141">94</div>
+            </div>
+
+            <div class="vs">vs</div>
+
+            <div class="team-info">
+                <img src="https://a.espncdn.com/i/teamlogos/ncaa/500/2870.png" alt="Purdue Fort Wayne" class="team-logo" onerror="this.style.display='none'">
+                <div class="team-name" style="color: #00378A">Purdue Fort Wayne</div>
+                <div class="team-score" style="color: #00378A">68</div>
+            </div>
+        </div>
+
+        <div class="game-date">November 7th, 2025</div>
+
+        <div class="stats-table">
+            <div class="stat-row">
+                <div class="stat-value">
+                    <span class="xp-badge" style="background: #ce1141">61.5</span>
+                    <span class="actual-value" style="color: #ce1141">(94)</span>
+                </div>
+                <div class="stat-label">Total xP</div>
+                <div class="stat-value">
+                    <span class="actual-value" style="color: #00378A">(68)</span>
+                    <span class="xp-badge" style="background: #00378A">72.5</span>
+                </div>
+            </div>
+
+            <div class="stat-row">
+                <div class="stat-value">
+                    <span class="xp-badge" style="background: #ce1141">23.1</span>
+                    <span class="actual-value" style="color: #ce1141">(36)</span>
+                </div>
+                <div class="stat-label">Two-Point xP</div>
+                <div class="stat-value">
+                    <span class="actual-value" style="color: #00378A">(42)</span>
+                    <span class="xp-badge" style="background: #00378A">35.6</span>
+                </div>
+            </div>
+
+            <div class="stat-row">
+                <div class="stat-value">
+                    <span class="xp-badge" style="background: #ce1141">29.1</span>
+                    <span class="actual-value" style="color: #ce1141">(48)</span>
+                </div>
+                <div class="stat-label">Three-Point xP</div>
+                <div class="stat-value">
+                    <span class="actual-value" style="color: #00378A">(15)</span>
+                    <span class="xp-badge" style="background: #00378A">24.7</span>
+                </div>
+            </div>
+
+            <div class="stat-row">
+                <div class="stat-value">
+                    <span class="xp-badge" style="background: #ce1141">9.4</span>
+                    <span class="actual-value" style="color: #ce1141">(10)</span>
+                </div>
+                <div class="stat-label">Free Throw xP</div>
+                <div class="stat-value">
+                    <span class="actual-value" style="color: #00378A">(11)</span>
+                    <span class="xp-badge" style="background: #00378A">12.2</span>
+                </div>
+            </div>
+
+            <div class="stat-row">
+                <div class="stat-value">
+                    <span class="xp-badge" style="background: #ce1141">1.00</span>
+                    <span class="actual-value" style="color: #ce1141">(1.57)</span>
+                </div>
+                <div class="stat-label">xP per 2PT Attempt</div>
+                <div class="stat-value">
+                    <span class="actual-value" style="color: #00378A">(1.14)</span>
+                    <span class="xp-badge" style="background: #00378A">0.96</span>
+                </div>
+            </div>
+
+            <div class="stat-row">
+                <div class="stat-value">
+                    <span class="xp-badge" style="background: #ce1141">1.04</span>
+                    <span class="actual-value" style="color: #ce1141">(1.71)</span>
+                </div>
+                <div class="stat-label">xP per 3PT Attempt</div>
+                <div class="stat-value">
+                    <span class="actual-value" style="color: #00378A">(0.68)</span>
+                    <span class="xp-badge" style="background: #00378A">1.12</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="summary">
+            <div class="summary-text" style="color: #ce1141">
+                Ohio State scored 94 points, our model expected them to score 61.5, meaning they outperformed expectations by 32.5 points
+            </div>
+            <div class="summary-text" style="color: #00378A">
+                Purdue Fort Wayne scored 68 points, our model expected them to score 72.5, meaning they underperformed expectations by 4.5 points
+            </div>
+        </div>
+
+        <div class="legend">
+            <div class="legend-title">How to Read:</div>
+            <div class="legend-text">Bold values = Expected Points (xP) | ( ) = Actual Points Scored</div>
+        </div>
+
+        <div class="footer">
+            <div class="venue">Venue: Schottenstein Center</div>
+            <div>@pickleo7 | Picklelytics</div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,286 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>xP Graphic - Presbyterian vs UCLA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: white;
+            padding: 20px;
+        }
+
+        .xp-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #1a1a1a;
+        }
+
+        .teams-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .team-info {
+            text-align: center;
+            flex: 1;
+        }
+
+        .team-logo {
+            width: 80px;
+            height: 80px;
+            max-width: 80px;
+            max-height: 80px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+
+        .team-name {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .team-score {
+            font-size: 36px;
+            font-weight: 700;
+        }
+
+        .vs {
+            font-size: 18px;
+            color: #999;
+            font-style: italic;
+            flex: 0 0 auto;
+            padding: 0 20px;
+        }
+
+        .game-date {
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .stats-table {
+            margin: 30px 0;
+        }
+
+        .stat-row {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .stat-row:last-child {
+            border-bottom: none;
+        }
+
+        .stat-label {
+            flex: 1;
+            text-align: center;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .stat-value {
+            flex: 1;
+            text-align: center;
+        }
+
+        .xp-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 8px;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .actual-value {
+            margin-left: 10px;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .summary {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .summary-text {
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .legend {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e8e8e8;
+        }
+
+        .legend-title {
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .legend-text {
+            font-size: 12px;
+            color: #666;
+            font-style: italic;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #999;
+            font-size: 12px;
+        }
+
+        .venue {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="xp-container">
+        <div class="title">UCLA vs. Presbyterian: Expected Points</div>
+
+        <div class="teams-header">
+            <div class="team-info">
+                <img src="https://a.espncdn.com/i/teamlogos/ncaa/500/26.png" alt="UCLA" class="team-logo" onerror="this.style.display='none'">
+                <div class="team-name" style="color: #2774ae">UCLA</div>
+                <div class="team-score" style="color: #2774ae">86</div>
+            </div>
+
+            <div class="vs">vs</div>
+
+            <div class="team-info">
+                <img src="https://a.espncdn.com/i/teamlogos/ncaa/500/2506.png" alt="Presbyterian" class="team-logo" onerror="this.style.display='none'">
+                <div class="team-name" style="color: #194896">Presbyterian</div>
+                <div class="team-score" style="color: #194896">46</div>
+            </div>
+        </div>
+
+        <div class="game-date">November 22nd, 2025</div>
+
+        <div class="stats-table">
+            <div class="stat-row">
+                <div class="stat-value">
+                    <span class="xp-badge" style="background: #2774ae">66.7</span>
+                    <span class="actual-value" style="color: #2774ae">(86)</span>
+                </div>
+                <div class="stat-label">Total xP</div>
+                <div class="stat-value">
+                    <span class="actual-value" style="color: #194896">(46)</span>
+                    <span class="xp-badge" style="background: #194896">61.1</span>
+                </div>
+            </div>
+
+            <div class="stat-row">
+                <div class="stat-value">
+                    <span class="xp-badge" style="background: #2774ae">36.4</span>
+                    <span class="actual-value" style="color: #2774ae">(52)</span>
+                </div>
+                <div class="stat-label">Two-Point xP</div>
+                <div class="stat-value">
+                    <span class="actual-value" style="color: #194896">(30)</span>
+                    <span class="xp-badge" style="background: #194896">28.1</span>
+                </div>
+            </div>
+
+            <div class="stat-row">
+                <div class="stat-value">
+                    <span class="xp-badge" style="background: #2774ae">13.0</span>
+                    <span class="actual-value" style="color: #2774ae">(18)</span>
+                </div>
+                <div class="stat-label">Three-Point xP</div>
+                <div class="stat-value">
+                    <span class="actual-value" style="color: #194896">(6)</span>
+                    <span class="xp-badge" style="background: #194896">22.1</span>
+                </div>
+            </div>
+
+            <div class="stat-row">
+                <div class="stat-value">
+                    <span class="xp-badge" style="background: #2774ae">17.3</span>
+                    <span class="actual-value" style="color: #2774ae">(16)</span>
+                </div>
+                <div class="stat-label">Free Throw xP</div>
+                <div class="stat-value">
+                    <span class="actual-value" style="color: #194896">(10)</span>
+                    <span class="xp-badge" style="background: #194896">10.8</span>
+                </div>
+            </div>
+
+            <div class="stat-row">
+                <div class="stat-value">
+                    <span class="xp-badge" style="background: #2774ae">0.93</span>
+                    <span class="actual-value" style="color: #2774ae">(1.33)</span>
+                </div>
+                <div class="stat-label">xP per 2PT Attempt</div>
+                <div class="stat-value">
+                    <span class="actual-value" style="color: #194896">(0.97)</span>
+                    <span class="xp-badge" style="background: #194896">0.91</span>
+                </div>
+            </div>
+
+            <div class="stat-row">
+                <div class="stat-value">
+                    <span class="xp-badge" style="background: #2774ae">1.08</span>
+                    <span class="actual-value" style="color: #2774ae">(1.50)</span>
+                </div>
+                <div class="stat-label">xP per 3PT Attempt</div>
+                <div class="stat-value">
+                    <span class="actual-value" style="color: #194896">(0.30)</span>
+                    <span class="xp-badge" style="background: #194896">1.11</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="summary">
+            <div class="summary-text" style="color: #2774ae">
+                UCLA scored 86 points, our model expected them to score 66.7, meaning they outperformed expectations by 19.3 points
+            </div>
+            <div class="summary-text" style="color: #194896">
+                Presbyterian scored 46 points, our model expected them to score 61.1, meaning they underperformed expectations by 15.1 points
+            </div>
+        </div>
+
+        <div class="legend">
+            <div class="legend-title">How to Read:</div>
+            <div class="legend-text">Bold values = Expected Points (xP) | ( ) = Actual Points Scored</div>
+        </div>
+
+        <div class="footer">
+            <div class="venue">Venue: Pauley Pavilion</div>
+            <div>@pickleo7 | Picklelytics</div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,197 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deserve to Win O-Meter - Bowling Green vs Davidson</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: white;
+            padding: 20px;
+        }
+
+        .deserve-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding: 15px 30px;
+            border: 3px solid #1a1a1a;
+            border-radius: 12px;
+            display: inline-block;
+            margin-left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .score-header {
+            text-align: center;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 40px;
+        }
+
+        .score-away {
+            color: #2b1000;
+        }
+
+        .score-home {
+            color: #000000;
+        }
+
+        .court-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            margin: 40px 0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .court {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right,
+                #2b1000 0%,
+                #2b1000 88.84720673223157%,
+                #000000 88.84720673223157%,
+                #000000 100%);
+            border: 4px solid white;
+        }
+
+        .court-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: rgba(255, 255, 255, 0.6);
+        }
+
+        .split-line {
+            position: absolute;
+            left: 88.84720673223157%;
+            top: 0;
+            bottom: 0;
+            width: 5px;
+            background: white;
+            z-index: 10;
+        }
+
+        .team-panel {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            text-align: center;
+            z-index: 20;
+        }
+
+        .team-panel.away {
+            left: 15%;
+        }
+
+        .team-panel.home {
+            right: 15%;
+        }
+
+        .win-prob-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .win-percentage {
+            font-size: 56px;
+            font-weight: 700;
+            color: white;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 20px 30px;
+            border-radius: 12px;
+            border: 3px solid white;
+            margin-bottom: 15px;
+        }
+
+        .team-logo-court {
+            width: 60px;
+            height: 60px;
+            filter: brightness(0) invert(1);
+            opacity: 0.4;
+        }
+
+        .explanation {
+            text-align: center;
+            font-size: 13px;
+            color: #666;
+            font-style: italic;
+            margin-top: 30px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #999;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="deserve-container">
+        <div class="title">⚖️ DESERVE TO WIN O-METER ⚖️</div>
+
+        <div class="score-header">
+            <span class="score-away">Bowling Green 87 (88.9 xP)</span>
+            <span style="color: #333"> - </span>
+            <span class="score-home">(73.8 xP) 91 Davidson</span>
+        </div>
+
+        <div class="court-container">
+            <div class="court">
+                <!-- Center line -->
+                <div class="court-line"></div>
+
+                <!-- Win probability split line -->
+                <div class="split-line"></div>
+
+                <!-- Away team panel -->
+                <div class="team-panel away">
+                    <div class="win-prob-label">Win Probability</div>
+                    <div class="win-percentage">88.8%</div>
+                    <img src="https://a.espncdn.com/i/teamlogos/ncaa/500/189.png" alt="Bowling Green" class="team-logo-court">
+                </div>
+
+                <!-- Home team panel -->
+                <div class="team-panel home">
+                    <div class="win-prob-label">Win Probability</div>
+                    <div class="win-percentage">11.2%</div>
+                    <img src="https://a.espncdn.com/i/teamlogos/ncaa/500/2166.png" alt="Davidson" class="team-logo-court">
+                </div>
+            </div>
+        </div>
+
+        <div class="explanation">
+            Based on 10,000 Monte Carlo simulations of Expected Points per Shot (xP) based on Shot Tracking Data
+        </div>
+
+        <div class="footer">
+            @pickleo7 | Picklelytics
+        </div>
+    </div>
+</body>
+</html>

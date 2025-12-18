@@ -1,0 +1,286 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>xP Graphic - Mount St. Mary's vs St. Francis (PA)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: white;
+            padding: 20px;
+        }
+
+        .xp-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #1a1a1a;
+        }
+
+        .teams-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .team-info {
+            text-align: center;
+            flex: 1;
+        }
+
+        .team-logo {
+            width: 80px;
+            height: 80px;
+            max-width: 80px;
+            max-height: 80px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+
+        .team-name {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .team-score {
+            font-size: 36px;
+            font-weight: 700;
+        }
+
+        .vs {
+            font-size: 18px;
+            color: #999;
+            font-style: italic;
+            flex: 0 0 auto;
+            padding: 0 20px;
+        }
+
+        .game-date {
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .stats-table {
+            margin: 30px 0;
+        }
+
+        .stat-row {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .stat-row:last-child {
+            border-bottom: none;
+        }
+
+        .stat-label {
+            flex: 1;
+            text-align: center;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .stat-value {
+            flex: 1;
+            text-align: center;
+        }
+
+        .xp-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 8px;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .actual-value {
+            margin-left: 10px;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .summary {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .summary-text {
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .legend {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e8e8e8;
+        }
+
+        .legend-title {
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .legend-text {
+            font-size: 12px;
+            color: #666;
+            font-style: italic;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #999;
+            font-size: 12px;
+        }
+
+        .venue {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="xp-container">
+        <div class="title">St. Francis (PA) vs. Mount St. Mary's: Expected Points</div>
+
+        <div class="teams-header">
+            <div class="team-info">
+                <img src="https://a.espncdn.com/i/teamlogos/default-team-logo-500.png" alt="St. Francis (PA)" class="team-logo" onerror="this.style.display='none'">
+                <div class="team-name" style="color: #a20012">St. Francis (PA)</div>
+                <div class="team-score" style="color: #a20012">66</div>
+            </div>
+
+            <div class="vs">vs</div>
+
+            <div class="team-info">
+                <img src="https://a.espncdn.com/i/teamlogos/ncaa/500/116.png" alt="Mount St. Mary's" class="team-logo" onerror="this.style.display='none'">
+                <div class="team-name" style="color: #005596">Mount St. Mary's</div>
+                <div class="team-score" style="color: #005596">74</div>
+            </div>
+        </div>
+
+        <div class="game-date">November 12th, 2025</div>
+
+        <div class="stats-table">
+            <div class="stat-row">
+                <div class="stat-value">
+                    <span class="xp-badge" style="background: #a20012">75.6</span>
+                    <span class="actual-value" style="color: #a20012">(66)</span>
+                </div>
+                <div class="stat-label">Total xP</div>
+                <div class="stat-value">
+                    <span class="actual-value" style="color: #005596">(74)</span>
+                    <span class="xp-badge" style="background: #005596">64.2</span>
+                </div>
+            </div>
+
+            <div class="stat-row">
+                <div class="stat-value">
+                    <span class="xp-badge" style="background: #a20012">34.3</span>
+                    <span class="actual-value" style="color: #a20012">(32)</span>
+                </div>
+                <div class="stat-label">Two-Point xP</div>
+                <div class="stat-value">
+                    <span class="actual-value" style="color: #005596">(28)</span>
+                    <span class="xp-badge" style="background: #005596">20.2</span>
+                </div>
+            </div>
+
+            <div class="stat-row">
+                <div class="stat-value">
+                    <span class="xp-badge" style="background: #a20012">28.3</span>
+                    <span class="actual-value" style="color: #a20012">(21)</span>
+                </div>
+                <div class="stat-label">Three-Point xP</div>
+                <div class="stat-value">
+                    <span class="actual-value" style="color: #005596">(39)</span>
+                    <span class="xp-badge" style="background: #005596">31.1</span>
+                </div>
+            </div>
+
+            <div class="stat-row">
+                <div class="stat-value">
+                    <span class="xp-badge" style="background: #a20012">13.0</span>
+                    <span class="actual-value" style="color: #a20012">(13)</span>
+                </div>
+                <div class="stat-label">Free Throw xP</div>
+                <div class="stat-value">
+                    <span class="actual-value" style="color: #005596">(7)</span>
+                    <span class="xp-badge" style="background: #005596">13.0</span>
+                </div>
+            </div>
+
+            <div class="stat-row">
+                <div class="stat-value">
+                    <span class="xp-badge" style="background: #a20012">0.90</span>
+                    <span class="actual-value" style="color: #a20012">(0.84)</span>
+                </div>
+                <div class="stat-label">xP per 2PT Attempt</div>
+                <div class="stat-value">
+                    <span class="actual-value" style="color: #005596">(1.27)</span>
+                    <span class="xp-badge" style="background: #005596">0.92</span>
+                </div>
+            </div>
+
+            <div class="stat-row">
+                <div class="stat-value">
+                    <span class="xp-badge" style="background: #a20012">1.05</span>
+                    <span class="actual-value" style="color: #a20012">(0.78)</span>
+                </div>
+                <div class="stat-label">xP per 3PT Attempt</div>
+                <div class="stat-value">
+                    <span class="actual-value" style="color: #005596">(1.30)</span>
+                    <span class="xp-badge" style="background: #005596">1.04</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="summary">
+            <div class="summary-text" style="color: #a20012">
+                St. Francis (PA) scored 66 points, our model expected them to score 75.6, meaning they underperformed expectations by 9.6 points
+            </div>
+            <div class="summary-text" style="color: #005596">
+                Mount St. Mary's scored 74 points, our model expected them to score 64.2, meaning they outperformed expectations by 9.8 points
+            </div>
+        </div>
+
+        <div class="legend">
+            <div class="legend-title">How to Read:</div>
+            <div class="legend-text">Bold values = Expected Points (xP) | ( ) = Actual Points Scored</div>
+        </div>
+
+        <div class="footer">
+            <div class="venue">Venue: DeGol Arena</div>
+            <div>@pickleo7 | Picklelytics</div>
+        </div>
+    </div>
+</body>
+</html>
