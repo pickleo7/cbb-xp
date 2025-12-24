@@ -316,6 +316,7 @@
             text-decoration: underline;
         }
 
+        /* Mobile-First Responsive Design */
         @media (max-width: 768px) {
             h1 {
                 font-size: 1.6em;
@@ -328,6 +329,13 @@
             .filter-row input,
             .filter-row select {
                 width: 100%;
+                min-width: unset;
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
+
+            .clear-filters {
+                width: 100%;
+                padding: 12px 20px;
             }
 
             .game-title {
@@ -342,19 +350,44 @@
             }
 
             header {
-                padding: 24px 20px;
+                padding: 20px 16px;
             }
 
             .content {
-                padding: 16px 20px;
+                padding: 12px 16px;
             }
 
             .search-filters {
-                padding: 16px;
+                padding: 16px 12px;
+                margin-bottom: 16px;
+            }
+
+            .games-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 12px;
             }
 
             .game-card {
-                padding: 16px 18px;
+                padding: 14px 12px;
+                gap: 12px;
+                min-height: 120px;
+            }
+
+            .team-logo {
+                width: 40px;
+                height: 40px;
+            }
+
+            .team-score {
+                font-size: 1.5em;
+            }
+
+            .matchup {
+                gap: 12px;
+            }
+
+            .game-date {
+                font-size: 0.7em;
             }
 
             .games-layout {
@@ -364,16 +397,89 @@
             .conference-sidebar {
                 width: 100%;
                 position: static;
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+
+            .conference-sidebar h3 {
+                font-size: 1em;
+                margin-bottom: 12px;
             }
 
             .conference-list {
                 flex-direction: row;
                 flex-wrap: wrap;
+                gap: 6px;
             }
 
             .conference-btn {
                 flex: 1 1 auto;
-                min-width: 120px;
+                min-width: 100px;
+                padding: 8px 12px;
+                font-size: 0.85em;
+            }
+
+            .games-section h2 {
+                font-size: 1.15em;
+                margin-bottom: 12px;
+            }
+
+            footer {
+                padding: 30px 16px;
+                font-size: 0.85em;
+            }
+        }
+
+        /* Extra small screens */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.4em;
+            }
+
+            .subtitle {
+                font-size: 0.85em;
+            }
+
+            header {
+                padding: 16px 12px;
+            }
+
+            .content {
+                padding: 8px 12px;
+            }
+
+            .games-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .game-card {
+                padding: 12px;
+            }
+
+            .conference-btn {
+                min-width: 90px;
+                font-size: 0.8em;
+            }
+
+            .no-results {
+                padding: 40px 16px;
+                font-size: 0.9em;
+            }
+        }
+
+        /* Improve touch targets for mobile */
+        @media (hover: none) and (pointer: coarse) {
+            .game-card {
+                min-height: 44px; /* Minimum touch target */
+            }
+
+            .conference-btn {
+                min-height: 44px;
+            }
+
+            .clear-filters {
+                min-height: 44px;
             }
         }
     </style>
