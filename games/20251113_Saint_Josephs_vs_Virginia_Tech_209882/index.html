@@ -185,6 +185,13 @@
             border-radius: 4px;
         }
 
+        .graphic-card iframe {
+            width: 100%;
+            max-width: 100%;
+            border: none;
+            border-radius: 8px;
+        }
+
         .report-section {
             background: #f8f8f8;
             padding: 20px;
@@ -362,7 +369,7 @@
             }
 
             .chart-container iframe {
-                height: 600px;
+                height: 600px !important;
             }
 
             .graphics-grid {
@@ -376,6 +383,11 @@
             .graphic-card h3 {
                 font-size: 1.1em;
                 margin-bottom: 12px;
+            }
+
+            .graphic-card iframe {
+                height: 450px !important;
+                max-height: 60vh;
             }
 
             .player-tables {
@@ -477,11 +489,16 @@
             }
 
             .chart-container iframe {
-                height: 500px;
+                height: 400px !important;
             }
 
             .graphic-card {
                 padding: 12px;
+            }
+
+            .graphic-card iframe {
+                height: 350px !important;
+                max-height: 50vh;
             }
 
             .player-table {
@@ -498,10 +515,6 @@
                 margin: 6px 0;
                 padding: 12px;
                 font-size: 0.85em;
-            }
-
-            .graphic-card iframe {
-                height: 500px !important;
             }
         }
 
@@ -524,11 +537,12 @@
         /* Landscape mobile optimization */
         @media (max-width: 900px) and (orientation: landscape) {
             .chart-container iframe {
-                height: 400px;
+                height: 350px !important;
             }
 
             .graphic-card iframe {
-                height: 400px !important;
+                height: 300px !important;
+                max-height: 70vh;
             }
         }
     </style>
